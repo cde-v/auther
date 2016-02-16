@@ -55,5 +55,12 @@ app.factory('User', function ($http, Story) {
 		return $http.delete(this.getUrl());
 	};
 
+	User.prototype.login = function (email, password) {
+		return $http.post('/api/users/login', {
+			email: email,
+			password: password
+		});
+	};
+
 	return User;
 });

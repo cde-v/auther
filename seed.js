@@ -62,7 +62,7 @@ function generateAll () {
 	var users = _.times(numUsers, randUser);
 	users.push(new User({
 		name: 'Zeke Nierenberg',
-		photo: 'http://media.licdn.com/media/p/5/005/0ac/184/16505c6.jpg',
+		photo: 'https://pbs.twimg.com/profile_images/29193142/Zeke_s_Contact_Image_400x400.jpg',
 		phone: '(510) 295-5523',
 		email: 'zeke@zeke.zeke',
 		password: '123',
