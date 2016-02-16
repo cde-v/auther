@@ -17,17 +17,21 @@ app.factory('Auth', function($http, $state) {
   };
 
   Auth.login = function(email, password) {
-    return $http.post('/login', {
+    return $http.post('/auth/login', {
         "email": email,
         "password": password
       })
       .then(function(res) {
-        if(res.data === "OK") $state.go('stories');
+        // console.log(res);
+        if(res.statusText === "OK") {
+          Auth.val = res.data.val;
+          $state.go('stories');
+        }
         // else window.alert("Invalid username or password"); //doesn't work??
       });
   };
   Auth.logout = function() {
-    return $http.post('/logout')
+    return $http.post('/auth/logout')
       .then(function(res) {
         if(res.data === "OK") $state.go('login');
         // else window.alert("Invalid username or password"); //doesn't work??
