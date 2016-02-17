@@ -1,25 +1,20 @@
 var router = require('express').Router();
 var User = require('../api/users/user.model');
-var passport = require('passport');
-var local = require('passport-local')
 
-router.post('/', function(req, res, next) {
-
-  var email = req.body.email;
-  var password = req.body.password;
-  console.log("sessionID", req.sessionID);
+router.put('/', function(req, res, next) {
+  var userId = req.body.userId;
+  // console.log("sessionID", req.sessionID);
 
   User.findOne({
-      email: email,
-      password: password
+      _id: userId,
+      //note this may be different with use of passport
+      sessionID: req.sessionID
     })
     .then(function(user) {
       // console.log("/login POST", user);
       if(!user) {
         res.sendStatus(401);
       } else {
-
-        //do either this entire router.post OR a router.post using passport
         req.session.userId = user._id;
         req.session.cookie.maxAge = 1000000;
         // console.log('session', req.session);
@@ -28,8 +23,5 @@ router.post('/', function(req, res, next) {
     })
     .then(null, next);
 });
-
-
-
 
 module.exports = router;

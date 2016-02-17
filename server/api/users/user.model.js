@@ -46,6 +46,9 @@ var User = new mongoose.Schema({
 	isAdmin: {
 		type: Boolean,
 		default: false
+	},
+	sessionID: {
+		type: String,
 	}
 });
 

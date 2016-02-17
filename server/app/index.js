@@ -3,6 +3,7 @@
 var app = require('express')();
 var path = require('path');
 var session = require('express-session');
+var passport = require('passport');
 // var bodyParser = require('body-parser');
 
 
@@ -11,6 +12,10 @@ app.use(require('./logging.middleware'));
 app.use(require('./requestState.middleware'));
 
 app.use(session({secret: 'tongiscool'}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(function (req, res, next) {
   // console.log('session', req.session);
